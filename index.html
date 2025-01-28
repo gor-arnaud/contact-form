@@ -1,13 +1,30 @@
-<html>
+<html data-theme="dark">
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+  />
   <style>
+    .logo {
+      margin-bottom: 30px;
+      max-width: 200px;
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
     .form {
       display: flex;
       flex-direction: column;
       max-width: 500px;
+      padding: 20px;
     }
     .form-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
     .form-content input[type="checkbox"] {
       align-self: flex-start;
@@ -16,6 +33,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 30px;
+      column-gap: 10px;
     }
     #company-section {
       grid-column: span 2;
@@ -50,68 +69,82 @@
       }
     }
   </script>
-</html>
-<body>
-  <form
-    method="post"
-    action="https://script.google.com/macros/s/AKfycbwrt2yCn41T6Sh_dp-XgL0ITHrQrcV9ISA6SNdfDfIMGBNCrf18ZzZqnLFoKasniytZ/exec"
-    class="form"
-  >
-    <div class="form-content">
-      <label>Nom :</label><input type="text" name="lastname" required />
-      <label>Prénom :</label><input type="text" name="firstname" required />
-      <label>Genre :</label
-      ><select name="gender" required>
-        <option value="">----</option>
-        <option>Homme</option>
-        <option>Femme</option>
-        <option>Autre</option>
-      </select>
-      <label>Email :</label><input type="email" name="email" required />
-      <label>Je suis une entreprise :</label
-      ><input
-        type="checkbox"
-        name="company"
-        id="cbCompany"
-        onclick="toggleCompanySection()"
-        value="Oui"
+  <body>
+    <div class="form-container">
+      <img
+        src="https://next-u.eu/wp-content/uploads/2022/02/LOGO-NEXTU.png"
+        class="logo"
       />
+      <h2 class="title">Mon formulaire de contact</h2>
+      <h3 class="subtitle">Les champs marqués d'un * sont obligatoires</h3>
+      <form
+        method="post"
+        action="https://script.google.com/macros/s/AKfycbwrt2yCn41T6Sh_dp-XgL0ITHrQrcV9ISA6SNdfDfIMGBNCrf18ZzZqnLFoKasniytZ/exec"
+        class="form"
+      >
+        <div class="form-content">
+          <label>Nom* :</label><input type="text" name="lastname" required />
+          <label>Prénom* :</label
+          ><input type="text" name="firstname" required /> <label>Genre :</label
+          ><select name="gender">
+            <option value="">----</option>
+            <option>Homme</option>
+            <option>Femme</option>
+            <option>Autre</option>
+          </select>
+          <label>Email :*</label><input type="email" name="email" required />
+          <label>Je suis une entreprise :</label
+          ><input
+            type="checkbox"
+            name="company"
+            id="cbCompany"
+            onclick="toggleCompanySection()"
+            value="Oui"
+          />
 
-      <div id="company-section">
-        <label>Raison sociale</label><input type="text" name="companyName" />
-        <label>Secteur d'activité</label>
-        <div>
-          <div>
-            <input type="radio" name="companySector" value="primaire" />Primaire
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="companySector"
-              value="secondary"
-            />Secondaire
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="companySector"
-              value="tertiary"
-            />Tertiaire
+          <div id="company-section">
+            <label>Raison sociale* :</label
+            ><input type="text" name="companyName" />
+            <label>Secteur d'activité* :</label>
+            <div>
+              <div>
+                <input
+                  type="radio"
+                  name="companySector"
+                  value="primaire"
+                />Primaire
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="companySector"
+                  value="secondary"
+                />Secondaire
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="companySector"
+                  value="tertiary"
+                />Tertiaire
+              </div>
+            </div>
+            <label>Nombre d'employés* :</label
+            ><select name="companySize">
+              <option value="">Sélectionner</option>
+              <option value="0-5">Moins de 5</option>
+              <option value="6-10">Entre 6 et 10</option>
+              <option value="11-50">Entre 11 et 50</option>
+              <option value="51-100">Entre 51 et 100</option>
+              <option value="100+">Plus de 100</option>
+            </select>
           </div>
         </div>
-        <label>Nombre d'employés</label
-        ><select name="companySize">
-          <option value="">Sélectionner</option>
-          <option value="0-5">Moins de 5</option>
-          <option value="6-10">Entre 6 et 10</option>
-          <option value="11-50">Entre 11 et 50</option>
-          <option value="51-100">Entre 51 et 100</option>
-          <option value="100+">Plus de 100</option>
-        </select>
-      </div>
+        <div class="form-actions">
+          <button type="submit" class="button is-primary">Envoyer</button>
+          <button type="reset" class="button">Réinitialiser</button>
+        </div>
+      </form>
     </div>
-    <div class="form-actions">
-      <button type="submit">Envoyer</button>
-    </div>
-  </form>
-</body>
+  </body>
+</html>
