@@ -1,0 +1,117 @@
+<html>
+  <style>
+    .form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+    }
+    .form-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .form-content input[type="checkbox"] {
+      align-self: flex-start;
+    }
+    .form-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #company-section {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      display: none;
+    }
+  </style>
+  <script>
+    function toggleCompanySection() {
+      const cbCompany = document.getElementById("cbCompany");
+      const companySection = document.getElementById("company-section");
+      const companyFields = companySection.querySelectorAll("input, select");
+
+      if (cbCompany.checked === true) {
+        companySection.style.display = "inherit";
+        toggleRequiredFields(companyFields, true);
+      } else {
+        companySection.style.display = "none";
+        toggleRequiredFields(companyFields, false);
+      }
+    }
+    function toggleRequiredFields(fields, required) {
+      for (let i = 0; i < fields.length; i = i + 1) {
+        const targetField = fields[i];
+
+        if (required === true) {
+          targetField.setAttribute("required", required);
+        } else {
+          targetField.removeAttribute("required");
+        }
+      }
+    }
+  </script>
+</html>
+<body>
+  <form
+    method="post"
+    action="https://script.google.com/macros/s/AKfycbwrt2yCn41T6Sh_dp-XgL0ITHrQrcV9ISA6SNdfDfIMGBNCrf18ZzZqnLFoKasniytZ/exec"
+    class="form"
+  >
+    <div class="form-content">
+      <label>Nom :</label><input type="text" name="lastname" required />
+      <label>Prénom :</label><input type="text" name="firstname" required />
+      <label>Genre :</label
+      ><select name="gender" required>
+        <option value="">----</option>
+        <option>Homme</option>
+        <option>Femme</option>
+        <option>Autre</option>
+      </select>
+      <label>Email :</label><input type="email" name="email" required />
+      <label>Je suis une entreprise :</label
+      ><input
+        type="checkbox"
+        name="company"
+        id="cbCompany"
+        onclick="toggleCompanySection()"
+        value="Oui"
+      />
+
+      <div id="company-section">
+        <label>Raison sociale</label><input type="text" name="companyName" />
+        <label>Secteur d'activité</label>
+        <div>
+          <div>
+            <input type="radio" name="companySector" value="primaire" />Primaire
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="companySector"
+              value="secondary"
+            />Secondaire
+          </div>
+          <div>
+            <input
+              type="radio"
+              name="companySector"
+              value="tertiary"
+            />Tertiaire
+          </div>
+        </div>
+        <label>Nombre d'employés</label
+        ><select name="companySize">
+          <option value="">Sélectionner</option>
+          <option value="0-5">Moins de 5</option>
+          <option value="6-10">Entre 6 et 10</option>
+          <option value="11-50">Entre 11 et 50</option>
+          <option value="51-100">Entre 51 et 100</option>
+          <option value="100+">Plus de 100</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit">Envoyer</button>
+    </div>
+  </form>
+</body>
