@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+            .form {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+        </style>
+        <script>
+            function verifEmailAvantEnvoi() {
+                const myForm = document.getElementById('myForm');
+                const email = document.getElementById('email');
+
+                if (email.value.includes('@next-u.fr') === true) {
+                    myForm.submit();
+                } else {
+                    alert('Seuls les emails Next-U sont autorisés');
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Les champs marqués d'un * sont obligatoires</h3>
+        <form
+            id="myForm"
+            method="post"
+            action="https://script.google.com/macros/s/AKfycbwrt2yCn41T6Sh_dp-XgL0ITHrQrcV9ISA6SNdfDfIMGBNCrf18ZzZqnLFoKasniytZ/exec"
+            class="form"
+        >
+            <label>Nom* :</label><input type="text" name="lastname" required>
+            <label>Prénom* :</label><input type="text" name="firstname" required>
+            <label>Genre :</label>
+            <select name="gender">
+                <option>---</option>
+                <option>Femme</option>
+                <option>Homme</option>
+                <option>Autre</option>
+            </select>
+            <label>Email* :</label><input id="email" type="email" name="email" required>
+        </form>
+        <button onclick="verifEmailAvantEnvoi()">Envoyer</button>
+    </body>
+</html>
